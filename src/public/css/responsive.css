@@ -374,6 +374,38 @@
   }
 }
 
+/* 手机端官方源提示 */
+@media (max-width: 768px) {
+  .official-source-warning {
+    padding: 1rem;
+  }
+
+  .warning-content {
+    padding: 1.5rem;
+  }
+
+  .warning-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .warning-content p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .official-tip {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* 手机端隐藏轮播图按钮 */
+@media (max-width: 768px) {
+  .carousel-item .btn {
+    display: none;
+  }
+}
+
 /* 触摸设备优化 */
 @media (hover: none) {
   .video-card:hover {
