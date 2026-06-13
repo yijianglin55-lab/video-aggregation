@@ -102,7 +102,7 @@ app.use((req, res, next) => {
 
   // 网站配置
   res.locals.siteConfig = {
-    name: process.env.SITE_NAME || '影视聚合',
+    name: process.env.SITE_NAME || '鲁王影视',
     description: process.env.SITE_DESCRIPTION || '高清影视资源聚合平台',
     keywords: process.env.SITE_KEYWORDS || '电影,电视剧,综艺,动漫,高清,在线观看'
   };
