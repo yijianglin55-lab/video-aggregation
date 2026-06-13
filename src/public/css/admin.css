@@ -141,16 +141,64 @@
   animation: fadeInUp 0.5s ease both;
 }
 
+/* 移动端菜单按钮 */
+.admin-menu-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+  width: 44px;
+  height: 44px;
+  background: var(--primary-color);
+  border: none;
+  border-radius: var(--radius-md);
+  color: white;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  display: none;
+}
+
+.sidebar-overlay.show {
+  display: block;
+}
+
+/* 管理后台内容 */
+.admin-content {
+  padding: 1.5rem;
+  min-height: 100vh;
+}
+
 /* 响应式调整 */
 @media (max-width: 768px) {
   .admin-sidebar {
     position: fixed;
     z-index: 1000;
-    left: -250px;
+    left: -280px;
+    width: 280px;
     transition: left 0.3s ease;
+    box-shadow: var(--shadow-xl);
   }
 
   .admin-sidebar.show {
     left: 0;
+  }
+
+  .admin-content {
+    padding: 1rem;
+    padding-top: 4rem;
   }
 }

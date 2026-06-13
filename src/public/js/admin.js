@@ -24,17 +24,30 @@ document.addEventListener('DOMContentLoaded', function() {
 function initSidebarToggle() {
   const sidebarToggle = document.getElementById('sidebarToggle');
   const sidebar = document.querySelector('.admin-sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
 
   if (sidebarToggle && sidebar) {
     sidebarToggle.addEventListener('click', function() {
       sidebar.classList.toggle('show');
+      if (overlay) overlay.classList.toggle('show');
     });
 
-    // 点击其他区域关闭侧边栏
-    document.addEventListener('click', function(e) {
-      if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+    // 点击遮罩关闭侧边栏
+    if (overlay) {
+      overlay.addEventListener('click', function() {
         sidebar.classList.remove('show');
-      }
+        overlay.classList.remove('show');
+      });
+    }
+
+    // 点击侧边栏链接后关闭
+    sidebar.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth < 768) {
+          sidebar.classList.remove('show');
+          if (overlay) overlay.classList.remove('show');
+        }
+      });
     });
   }
 }

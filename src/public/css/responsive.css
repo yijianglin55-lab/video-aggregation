@@ -1,0 +1,427 @@
+/* =============================================
+   移动端响应式样式
+   ============================================= */
+
+/* 手机端导航栏 */
+@media (max-width: 991px) {
+  .navbar {
+    padding: 0.5rem 0;
+  }
+
+  .navbar-collapse {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border: 1px solid var(--border-color);
+  }
+
+  .navbar-nav {
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .search-box {
+    margin: 0.75rem 0;
+  }
+
+  .search-box .input-group {
+    width: 100%;
+  }
+
+  .nav-login-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+}
+
+/* 手机端轮播图 */
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 0.5rem;
+  }
+
+  .carousel-image {
+    height: 200px;
+  }
+
+  .carousel-overlay {
+    padding: 1rem;
+  }
+
+  .carousel-title {
+    font-size: 1.1rem;
+  }
+
+  .carousel-item .btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 35px;
+    height: 35px;
+  }
+
+  .carousel-indicators button {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* 手机端视频卡片 */
+@media (max-width: 576px) {
+  .video-card .card-body {
+    padding: 0.5rem;
+  }
+
+  .video-card .card-title {
+    font-size: 0.75rem;
+  }
+
+  .video-card .card-text {
+    font-size: 0.65rem;
+    display: none;
+  }
+
+  .video-card .badge {
+    font-size: 0.6rem;
+    padding: 0.2em 0.4em;
+  }
+}
+
+/* 手机端筛选菜单 */
+@media (max-width: 768px) {
+  .filter-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .filter-tags {
+    width: 100%;
+  }
+
+  .filter-tag {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* 手机端详情页 */
+@media (max-width: 768px) {
+  .detail-cover {
+    max-width: 200px;
+    margin: 0 auto 1rem;
+  }
+
+  .source-tabs-detail {
+    gap: 0.35rem;
+  }
+
+  .source-tab-detail {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .episodes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+    gap: 0.35rem;
+  }
+}
+
+/* 手机端播放页 */
+@media (max-width: 768px) {
+  .player-navbar-content {
+    gap: 0.5rem;
+  }
+
+  .player-nav-btn {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .player-nav-btn span {
+    display: none;
+  }
+
+  .player-title {
+    display: none;
+  }
+
+  .site-name-sm {
+    display: none;
+  }
+
+  .source-tabs {
+    gap: 0.35rem;
+  }
+
+  .source-tab {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .episodes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 0.35rem;
+  }
+
+  .episode-btn {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* 手机端用户中心 */
+@media (max-width: 768px) {
+  .user-profile-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .user-avatar {
+    margin-bottom: 1rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .stat-info h4 {
+    font-size: 1.25rem;
+  }
+
+  .user-menu-item {
+    padding: 0.75rem 1rem;
+  }
+
+  .menu-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+}
+
+/* 手机端收藏/历史列表 */
+@media (max-width: 768px) {
+  .favorite-item,
+  .history-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .favorite-meta,
+  .history-meta {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* 手机端登录/注册页 */
+@media (max-width: 576px) {
+  .auth-card {
+    padding: 1.5rem;
+  }
+
+  .logo-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+  }
+
+  .logo-bar {
+    width: 3px;
+    height: 18px;
+  }
+
+  .logo-bar:nth-child(2) {
+    height: 24px;
+  }
+
+  .auth-title {
+    font-size: 1.25rem;
+  }
+
+  .input-group-text {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .form-control {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 手机端管理后台 */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    position: fixed;
+    left: -280px;
+    width: 280px;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .admin-sidebar.show {
+    left: 0;
+  }
+
+  .admin-content {
+    padding: 1rem;
+  }
+
+  .admin-stat-card {
+    padding: 1rem;
+  }
+
+  .admin-stat-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .admin-table {
+    overflow-x: auto;
+  }
+
+  .admin-table table {
+    min-width: 600px;
+  }
+}
+
+/* 手机端空状态 */
+@media (max-width: 576px) {
+  .empty-state {
+    padding: 2rem 1rem;
+  }
+
+  .empty-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 1.5rem;
+  }
+
+  .empty-state h4 {
+    font-size: 1.1rem;
+  }
+
+  .btn-empty-action {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* 手机端分页 */
+@media (max-width: 576px) {
+  .pagination {
+    gap: 0.25rem;
+  }
+
+  .page-link {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* 手机端面包屑 */
+@media (max-width: 576px) {
+  .breadcrumb {
+    font-size: 0.8rem;
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    padding-right: 0.5rem;
+  }
+}
+
+/* 手机端页脚 */
+@media (max-width: 768px) {
+  footer {
+    padding: 2rem 0 1.5rem;
+    text-align: center;
+  }
+
+  footer .row > div {
+    margin-bottom: 1.5rem;
+  }
+
+  footer h5 {
+    font-size: 0.9rem;
+  }
+
+  footer ul {
+    padding: 0;
+  }
+
+  footer li {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) {
+  .video-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .video-card:active {
+    transform: scale(0.98);
+  }
+
+  .btn:active {
+    transform: scale(0.95);
+  }
+
+  .stat-card:hover {
+    transform: none;
+  }
+
+  .stat-card:active {
+    transform: scale(0.98);
+  }
+}
+
+/* 安全区域适配（刘海屏） */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  footer {
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  }
+
+  .player-navbar {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* 暗色模式下拉菜单 */
+@media (prefers-color-scheme: dark) {
+  .dropdown-menu {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+  }
+
+  .dropdown-item {
+    color: var(--text-secondary);
+  }
+
+  .dropdown-item:hover {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--text-primary);
+  }
+}
