@@ -17,6 +17,14 @@
   <link href="/css/responsive.css" rel="stylesheet">
 </head>
 <body class="bg-dark">
+  <!-- 全局加载动画 -->
+  <div id="globalLoading" class="global-loading">
+    <div class="loading-spinner-wrapper">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">加载中...</p>
+    </div>
+  </div>
+
   <!-- 播放页导航 -->
   <nav class="player-navbar">
     <div class="container">
@@ -61,5 +69,31 @@
   <!-- 自定义JS -->
   <script src="/js/main.js"></script>
   <script src="/js/player.js"></script>
+
+  <!-- 全局加载动画控制 -->
+  <script>
+    function showLoading() {
+      document.getElementById('globalLoading').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideLoading() {
+      document.getElementById('globalLoading').classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a');
+      if (!link) return;
+      var href = link.getAttribute('href');
+      if (!href || href === '#' || href.startsWith('javascript:') || href.startsWith('mailto:')) return;
+      if (link.target === '_blank') return;
+      showLoading();
+      link.classList.add('loading-state');
+      setTimeout(hideLoading, 10000);
+    });
+
+    window.addEventListener('load', hideLoading);
+  </script>
 </body>
 </html>

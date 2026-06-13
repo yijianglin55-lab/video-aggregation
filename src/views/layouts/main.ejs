@@ -23,6 +23,9 @@
   <!-- 导航栏 -->
   <%- include('../partials/navbar') %>
 
+  <!-- 全局加载动画 -->
+  <%- include('../partials/loading') %>
+
   <!-- 主要内容 -->
   <main class="min-vh-100">
     <%- body %>
@@ -36,10 +39,66 @@
   <!-- 自定义JS -->
   <script src="/js/main.js"></script>
 
-  <!-- 导航栏滚动效果 -->
+  <!-- 全局加载动画控制 -->
   <script>
+    // 显示加载动画
+    function showLoading() {
+      document.getElementById('globalLoading').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // 隐藏加载动画
+    function hideLoading() {
+      document.getElementById('globalLoading').classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    // 监听所有链接点击
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a');
+      if (!link) return;
+
+      var href = link.getAttribute('href');
+      if (!href || href === '#' || href.startsWith('javascript:') || href.startsWith('mailto:')) return;
+
+      // 排除新窗口打开
+      if (link.target === '_blank') return;
+
+      // 排除锚点链接
+      if (href.startsWith('#')) return;
+
+      // 显示加载动画
+      showLoading();
+
+      // 防止重复点击
+      link.classList.add('loading-state');
+
+      // 超时隐藏（防止卡住）
+      setTimeout(hideLoading, 10000);
+    });
+
+    // 监听表单提交
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading-state');
+      }
+
+      showLoading();
+
+      // 超时隐藏
+      setTimeout(hideLoading, 10000);
+    });
+
+    // 页面加载完成后隐藏
+    window.addEventListener('load', hideLoading);
+
+    // 导航栏滚动效果
     window.addEventListener('scroll', function() {
-      const navbar = document.querySelector('.navbar');
+      var navbar = document.querySelector('.navbar');
       if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
       } else {
