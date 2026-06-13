@@ -82,7 +82,7 @@
 
           <!-- 操作按钮 -->
           <div class="d-flex flex-wrap gap-3 mb-4">
-            <a href="/play/<%= video.type %>/<%= video.id %>" class="btn btn-primary btn-lg rounded-pill px-4">
+            <a href="/play/<%= video.type %>/<%= video.id %>" class="btn btn-primary btn-lg rounded-pill px-4 play-btn" id="playBtn">
               <i class="bi bi-play-fill me-2"></i>立即播放
             </a>
             <button class="btn btn-outline-danger btn-lg rounded-pill px-4 favorite-btn" data-type="<%= video.type %>" data-id="<%= video.id %>" data-name="<%= video.title %>">
@@ -171,6 +171,12 @@
 <% } %>
 
 <script>
+// 播放按钮加载状态
+document.getElementById('playBtn')?.addEventListener('click', function(e) {
+  this.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>加载中...';
+  this.classList.add('disabled');
+});
+
 // 收藏功能
 document.querySelectorAll('.favorite-btn').forEach(btn => {
   btn.addEventListener('click', async function() {
