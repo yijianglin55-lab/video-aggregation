@@ -170,42 +170,46 @@
   </div>
 <% } %>
 
+<!-- 详情页脚本 -->
 <script>
-// 播放按钮加载状态
-document.getElementById('playBtn')?.addEventListener('click', function(e) {
-  this.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>加载中...';
-  this.classList.add('disabled');
-});
+document.addEventListener('DOMContentLoaded', function() {
+  // 播放按钮加载状态
+  var playBtn = document.getElementById('playBtn');
+  if (playBtn) {
+    playBtn.addEventListener('click', function(e) {
+      this.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>加载中...';
+      this.classList.add('disabled');
+    });
+  }
 
-// 收藏功能
-document.querySelectorAll('.favorite-btn').forEach(btn => {
-  btn.addEventListener('click', async function() {
-    const type = this.dataset.type;
-    const id = this.dataset.id;
-    const name = this.dataset.name;
+  // 收藏功能
+  document.querySelectorAll('.favorite-btn').forEach(function(btn) {
+    btn.addEventListener('click', async function() {
+      var type = this.dataset.type;
+      var id = this.dataset.id;
+      var name = this.dataset.name;
 
-    try {
-      const response = await fetch('/api/favorite', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ type, id, name })
-      });
+      try {
+        var response = await fetch('/api/favorite', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: type, id: id, name: name })
+        });
 
-      const result = await response.json();
+        var result = await response.json();
 
-      if (result.success) {
-        this.classList.remove('btn-outline-danger');
-        this.classList.add('btn-danger');
-        this.innerHTML = '<i class="bi bi-heart-fill me-2"></i>已收藏';
-      } else {
-        alert(result.message || '操作失败');
+        if (result.success) {
+          this.classList.remove('btn-outline-danger');
+          this.classList.add('btn-danger');
+          this.innerHTML = '<i class="bi bi-heart-fill me-2"></i>已收藏';
+        } else {
+          alert(result.message || '操作失败');
+        }
+      } catch (error) {
+        alert('请先登录');
+        window.location.href = '/auth/login';
       }
-    } catch (error) {
-      alert('请先登录');
-      window.location.href = '/auth/login';
-    }
+    });
   });
 });
 </script>
