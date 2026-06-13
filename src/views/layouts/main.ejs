@@ -118,6 +118,12 @@
     // 页面加载完成后隐藏
     window.addEventListener('load', hideLoading);
 
+    // 页面显示时也隐藏（处理浏览器前进/后退）
+    window.addEventListener('pageshow', hideLoading);
+
+    // DOMContentLoaded 时隐藏
+    document.addEventListener('DOMContentLoaded', hideLoading);
+
     // 导航栏滚动效果
     window.addEventListener('scroll', function() {
       var navbar = document.querySelector('.navbar');

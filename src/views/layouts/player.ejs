@@ -116,6 +116,8 @@
     });
 
     window.addEventListener('load', hideLoading);
+    window.addEventListener('pageshow', hideLoading);
+    document.addEventListener('DOMContentLoaded', hideLoading);
   </script>
 </body>
 </html>
