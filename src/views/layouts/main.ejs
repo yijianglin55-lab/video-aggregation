@@ -41,16 +41,44 @@
 
   <!-- 全局加载动画控制 -->
   <script>
+    var loadingTimer = null;
+    var loadingTextTimer = null;
+
     // 显示加载动画
     function showLoading() {
-      document.getElementById('globalLoading').classList.add('show');
+      var el = document.getElementById('globalLoading');
+      var textEl = el.querySelector('.loading-text');
+
+      el.classList.add('show');
       document.body.style.overflow = 'hidden';
+
+      // 重置文字
+      textEl.textContent = '加载中...';
+
+      // 5秒后改变文字
+      loadingTextTimer = setTimeout(function() {
+        textEl.textContent = '即将加载完成...';
+      }, 5000);
+
+      // 20秒后自动隐藏
+      loadingTimer = setTimeout(hideLoading, 20000);
     }
 
     // 隐藏加载动画
     function hideLoading() {
-      document.getElementById('globalLoading').classList.remove('show');
+      var el = document.getElementById('globalLoading');
+      el.classList.remove('show');
       document.body.style.overflow = '';
+
+      // 清除定时器
+      if (loadingTimer) {
+        clearTimeout(loadingTimer);
+        loadingTimer = null;
+      }
+      if (loadingTextTimer) {
+        clearTimeout(loadingTextTimer);
+        loadingTextTimer = null;
+      }
     }
 
     // 监听所有链接点击
@@ -72,9 +100,6 @@
 
       // 防止重复点击
       link.classList.add('loading-state');
-
-      // 超时隐藏（防止卡住）
-      setTimeout(hideLoading, 10000);
     });
 
     // 监听表单提交
@@ -88,9 +113,6 @@
       }
 
       showLoading();
-
-      // 超时隐藏
-      setTimeout(hideLoading, 10000);
     });
 
     // 页面加载完成后隐藏

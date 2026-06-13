@@ -72,14 +72,37 @@
 
   <!-- 全局加载动画控制 -->
   <script>
+    var loadingTimer = null;
+    var loadingTextTimer = null;
+
     function showLoading() {
-      document.getElementById('globalLoading').classList.add('show');
+      var el = document.getElementById('globalLoading');
+      var textEl = el.querySelector('.loading-text');
+
+      el.classList.add('show');
       document.body.style.overflow = 'hidden';
+      textEl.textContent = '加载中...';
+
+      loadingTextTimer = setTimeout(function() {
+        textEl.textContent = '即将加载完成...';
+      }, 5000);
+
+      loadingTimer = setTimeout(hideLoading, 20000);
     }
 
     function hideLoading() {
-      document.getElementById('globalLoading').classList.remove('show');
+      var el = document.getElementById('globalLoading');
+      el.classList.remove('show');
       document.body.style.overflow = '';
+
+      if (loadingTimer) {
+        clearTimeout(loadingTimer);
+        loadingTimer = null;
+      }
+      if (loadingTextTimer) {
+        clearTimeout(loadingTextTimer);
+        loadingTextTimer = null;
+      }
     }
 
     document.addEventListener('click', function(e) {
@@ -90,7 +113,6 @@
       if (link.target === '_blank') return;
       showLoading();
       link.classList.add('loading-state');
-      setTimeout(hideLoading, 10000);
     });
 
     window.addEventListener('load', hideLoading);
