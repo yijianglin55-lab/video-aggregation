@@ -4,7 +4,7 @@
   "description": "影视聚合网站 - 基于Node.js + Express + EJS + MySQL + Axios + Cheerio + Bootstrap5",
   "main": "src/app.js",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "dev": "nodemon src/app.js",
