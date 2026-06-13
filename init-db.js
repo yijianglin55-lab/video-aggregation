@@ -13,37 +13,36 @@ async function initDatabase() {
   console.log('========================================\n');
 
   // 解析数据库连接信息
-  let dbConfig;
-
-  if (process.env.MYSQL_URL) {
-    // Railway 提供的 MYSQL_URL
-    dbConfig = process.env.MYSQL_URL;
-    console.log('使用 Railway MySQL URL 连接');
-  } else {
-    // 本地配置
-    dbConfig = {
-      host: process.env.MYSQL_HOST || process.env.DB_HOST || 'localhost',
-      port: parseInt(process.env.MYSQL_PORT || process.env.DB_PORT) || 3306,
-      user: process.env.MYSQL_USER || process.env.DB_USER || 'root',
-      password: process.env.MYSQL_PASSWORD || process.env.DB_PASSWORD || '',
-      database: process.env.MYSQL_DATABASE || process.env.DB_NAME || 'video_aggregation'
-    };
-    console.log('使用本地数据库配置');
-  }
-
   let connection;
 
   try {
-    connection = await mysql.createConnection(dbConfig);
-    console.log('✅ 数据库连接成功\n');
-
-    // 如果使用MYSQL_URL，需要先创建数据库
+    // Railway 提供的环境变量格式
     if (process.env.MYSQL_URL) {
-      const dbName = process.env.MYSQL_DATABASE || 'video_aggregation';
-      await connection.query(`CREATE DATABASE IF NOT EXISTS ${dbName} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`);
-      await connection.query(`USE ${dbName}`);
-      console.log(`✅ 数据库 ${dbName} 已就绪\n`);
+      console.log('使用 MYSQL_URL 连接...');
+      connection = await mysql.createConnection(process.env.MYSQL_URL);
+    } else if (process.env.MYSQLHOST) {
+      // Railway 另一种格式
+      console.log('使用 Railway MySQL 环境变量连接...');
+      connection = await mysql.createConnection({
+        host: process.env.MYSQLHOST,
+        port: parseInt(process.env.MYSQLPORT) || 3306,
+        user: process.env.MYSQLUSER,
+        password: process.env.MYSQLPASSWORD,
+        database: process.env.MYSQLDATABASE
+      });
+    } else {
+      // 本地配置
+      console.log('使用本地数据库配置...');
+      connection = await mysql.createConnection({
+        host: process.env.DB_HOST || 'localhost',
+        port: parseInt(process.env.DB_PORT) || 3306,
+        user: process.env.DB_USER || 'root',
+        password: process.env.DB_PASSWORD || '',
+        database: process.env.DB_NAME || 'video_aggregation'
+      });
     }
+
+    console.log('✅ 数据库连接成功\n');
 
     // 创建用户表
     console.log('[1/4] 创建数据表...');
@@ -153,7 +152,6 @@ async function initDatabase() {
       console.log('     用户名: admin');
       console.log('     密码: admin123\n');
     } else {
-      // 更新管理员密码
       await connection.query(
         'UPDATE users SET password = ? WHERE username = ?',
         [adminPassword, 'admin']
@@ -169,10 +167,13 @@ async function initDatabase() {
     console.log('\n管理员账号:');
     console.log('  用户名: admin');
     console.log('  密码: admin123');
-    console.log('\n请登录后立即修改密码！');
 
   } catch (error) {
     console.error('\n❌ 数据库初始化失败:', error.message);
+    console.error('\n请检查数据库配置:');
+    console.error('- MYSQL_URL:', process.env.MYSQL_URL ? '已设置' : '未设置');
+    console.error('- MYSQLHOST:', process.env.MYSQLHOST || '未设置');
+    console.error('- DB_HOST:', process.env.DB_HOST || '未设置');
     process.exit(1);
   } finally {
     if (connection) {

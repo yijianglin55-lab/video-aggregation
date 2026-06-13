@@ -9,23 +9,44 @@ require('dotenv').config();
 // 创建数据库连接池
 let pool;
 
-if (process.env.MYSQL_URL) {
-  // Railway 提供的 MYSQL_URL
-  pool = mysql.createPool(process.env.MYSQL_URL);
-} else {
+function createPool() {
+  // Railway MYSQL_URL
+  if (process.env.MYSQL_URL) {
+    console.log('[DB] 使用 MYSQL_URL 连接');
+    return mysql.createPool(process.env.MYSQL_URL);
+  }
+
+  // Railway 环境变量格式
+  if (process.env.MYSQLHOST) {
+    console.log('[DB] 使用 Railway MySQL 环境变量连接');
+    return mysql.createPool({
+      host: process.env.MYSQLHOST,
+      port: parseInt(process.env.MYSQLPORT) || 3306,
+      user: process.env.MYSQLUSER,
+      password: process.env.MYSQLPASSWORD,
+      database: process.env.MYSQLDATABASE,
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0
+    });
+  }
+
   // 本地配置
-  pool = mysql.createPool({
-    host: process.env.MYSQL_HOST || process.env.DB_HOST || 'localhost',
-    port: parseInt(process.env.MYSQL_PORT || process.env.DB_PORT) || 3306,
-    user: process.env.MYSQL_USER || process.env.DB_USER || 'root',
-    password: process.env.MYSQL_PASSWORD || process.env.DB_PASSWORD || '',
-    database: process.env.MYSQL_DATABASE || process.env.DB_NAME || 'video_aggregation',
+  console.log('[DB] 使用本地数据库配置');
+  return mysql.createPool({
+    host: process.env.DB_HOST || 'localhost',
+    port: parseInt(process.env.DB_PORT) || 3306,
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'video_aggregation',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
     charset: 'utf8mb4'
   });
 }
+
+pool = createPool();
 
 // 测试数据库连接
 async function testConnection() {
