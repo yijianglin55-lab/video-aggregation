@@ -1,0 +1,79 @@
+<!-- 注册页面模板 -->
+
+<div class="auth-page">
+  <div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 80vh;">
+      <div class="col-md-5 col-lg-4">
+        <div class="auth-card">
+          <!-- Logo -->
+          <div class="auth-logo-new">
+            <div class="logo-circle">
+              <div class="logo-inner">
+                <div class="logo-bar"></div>
+                <div class="logo-bar"></div>
+                <div class="logo-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="auth-title">创建账号</h2>
+          <p class="auth-subtitle">注册后即可收藏和记录观看历史</p>
+
+          <!-- 错误提示 -->
+          <% if (typeof error !== 'undefined' && error && error.length > 0) { %>
+            <div class="auth-error">
+              <i class="bi bi-exclamation-circle me-2"></i><%= error %>
+            </div>
+          <% } %>
+
+          <!-- 表单 -->
+          <form action="/auth/register" method="POST" class="auth-form">
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-person"></i>
+                </span>
+                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-envelope"></i>
+                </span>
+                <input type="email" class="form-control" id="email" name="email" placeholder="请输入邮箱" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-lock"></i>
+                </span>
+                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码（至少6位）" minlength="6" required>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-lock-fill"></i>
+                </span>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="请再次输入密码" minlength="6" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">
+              <i class="bi bi-person-plus me-2"></i>注册
+            </button>
+          </form>
+
+          <div class="auth-footer">
+            <p>已有账号？<a href="/auth/login">立即登录</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<!-- 站点配置页面模板 -->
+
+<div class="admin-content">
+  <div class="d-flex align-items-center justify-content-between mb-4 fade-in-up">
+    <h3 class="mb-0 fw-bold">站点配置</h3>
+  </div>
+
+  <div class="admin-form fade-in-up" style="animation-delay: 0.1s">
+    <form id="settingsForm" action="/admin/settings" method="POST">
+      <!-- 网站基本信息 -->
+      <h5 class="mb-3 fw-bold">网站信息</h5>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="siteName" class="form-label">网站名称</label>
+          <input type="text" class="form-control" id="siteName" name="siteName"
+                 value="<%= typeof settings !== 'undefined' && settings.siteName ? settings.siteName : '鲁王影视' %>">
+        </div>
+        <div class="col-md-6">
+          <label for="siteLogo" class="form-label">网站Logo</label>
+          <input type="text" class="form-control" id="siteLogo" name="siteLogo"
+                 value="<%= typeof settings !== 'undefined' && settings.siteLogo ? settings.siteLogo : '' %>"
+                 placeholder="Logo图片URL">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="announcement" class="form-label">首页公告</label>
+        <textarea class="form-control" id="announcement" name="announcement" rows="3"><%= typeof settings !== 'undefined' && settings.announcement ? settings.announcement : '' %></textarea>
+      </div>
+
+      <hr class="my-4">
+
+      <!-- SEO配置 -->
+      <h5 class="mb-3 fw-bold">SEO配置</h5>
+
+      <div class="mb-3">
+        <label for="seoTitle" class="form-label">SEO标题</label>
+        <input type="text" class="form-control" id="seoTitle" name="seoTitle"
+               value="<%= typeof settings !== 'undefined' && settings.seoTitle ? settings.seoTitle : '' %>">
+      </div>
+
+      <div class="mb-3">
+        <label for="seoDescription" class="form-label">SEO描述</label>
+        <textarea class="form-control" id="seoDescription" name="seoDescription" rows="3"><%= typeof settings !== 'undefined' && settings.seoDescription ? settings.seoDescription : '' %></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="seoKeywords" class="form-label">SEO关键词</label>
+        <input type="text" class="form-control" id="seoKeywords" name="seoKeywords"
+               value="<%= typeof settings !== 'undefined' && settings.seoKeywords ? settings.seoKeywords : '' %>"
+               placeholder="多个关键词用逗号分隔">
+      </div>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button type="reset" class="btn btn-outline-secondary rounded-pill px-4">重置</button>
+        <button type="submit" class="btn btn-primary rounded-pill px-4">
+          <i class="bi bi-check-lg me-1"></i>保存配置
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

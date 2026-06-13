@@ -1,0 +1,199 @@
+<!-- 首页模板 -->
+
+<!-- 轮播图 -->
+<% if (typeof banner !== 'undefined' && banner.length > 0) { %>
+<section class="hero-section mb-5">
+  <div class="container">
+    <div id="heroCarousel" class="carousel slide rounded-4 overflow-hidden shadow-lg" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-indicators">
+        <% banner.forEach((item, index) => { %>
+          <% if (index === 0) { %>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="<%= index %>" class="active" aria-current="true" aria-label="Slide <%= index + 1 %>"></button>
+          <% } else { %>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="<%= index %>" aria-label="Slide <%= index + 1 %>"></button>
+          <% } %>
+        <% }) %>
+      </div>
+      <div class="carousel-inner">
+        <% banner.forEach((item, index) => { %>
+          <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+            <%
+              // 构建正确的详情页链接
+              let detailLink = item.href;
+              if (item.href && !item.href.startsWith('/detail/')) {
+                // 将 /tv/xxx 或 /movie/xxx 转换为 /detail/tv/xxx 或 /detail/movie/xxx
+                const parts = item.href.split('/').filter(p => p);
+                if (parts.length >= 2) {
+                  detailLink = '/detail/' + parts[0] + '/' + parts.slice(1).join('/');
+                }
+              }
+            %>
+            <a href="<%= detailLink %>" class="d-block text-decoration-none">
+              <div class="carousel-image" style="background-image: url('<%= item.img %>');">
+                <div class="carousel-overlay">
+                  <div class="carousel-content">
+                    <h2 class="carousel-title"><%= item.title %></h2>
+                    <span class="btn btn-primary btn-lg mt-3 rounded-pill px-4">
+                      <i class="bi bi-play-fill me-2"></i>立即观看
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        <% }) %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 正在热播 -->
+<% if (typeof hotMovies !== 'undefined' && hotMovies.length > 0) { %>
+<section class="section-animate mb-5">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-title-wrapper">
+        <i class="bi bi-fire text-danger section-icon"></i>
+        <h4 class="section-title">正在热播</h4>
+      </div>
+      <a href="/movie" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+        查看更多 <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
+      <% hotMovies.forEach((movie, index) => { %>
+        <div class="col" style="animation-delay: <%= index * 0.05 %>s">
+          <%- include('../partials/video-card', { video: movie }) %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 最新电影 -->
+<% if (typeof latestMovies !== 'undefined' && latestMovies.length > 0) { %>
+<section class="section-animate mb-5">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-title-wrapper">
+        <i class="bi bi-camera-reels text-primary section-icon"></i>
+        <h4 class="section-title">最新电影</h4>
+      </div>
+      <a href="/movie" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+        查看更多 <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
+      <% latestMovies.forEach((movie, index) => { %>
+        <div class="col" style="animation-delay: <%= index * 0.05 %>s">
+          <%- include('../partials/video-card', { video: movie }) %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 热播电视剧 -->
+<% if (typeof hotTvShows !== 'undefined' && hotTvShows.length > 0) { %>
+<section class="section-animate mb-5">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-title-wrapper">
+        <i class="bi bi-tv text-success section-icon"></i>
+        <h4 class="section-title">热播电视剧</h4>
+      </div>
+      <a href="/tv" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+        查看更多 <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
+      <% hotTvShows.forEach((tv, index) => { %>
+        <div class="col" style="animation-delay: <%= index * 0.05 %>s">
+          <%- include('../partials/video-card', { video: tv }) %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 最新电视剧 -->
+<% if (typeof latestTvShows !== 'undefined' && latestTvShows.length > 0) { %>
+<section class="section-animate mb-5">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-title-wrapper">
+        <i class="bi bi-tv text-info section-icon"></i>
+        <h4 class="section-title">最新电视剧</h4>
+      </div>
+      <a href="/tv" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+        查看更多 <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
+      <% latestTvShows.forEach((tv, index) => { %>
+        <div class="col" style="animation-delay: <%= index * 0.05 %>s">
+          <%- include('../partials/video-card', { video: tv }) %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 热播综艺 -->
+<% if (typeof hotVariety !== 'undefined' && hotVariety.length > 0) { %>
+<section class="section-animate mb-5">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-title-wrapper">
+        <i class="bi bi-mic text-warning section-icon"></i>
+        <h4 class="section-title">热播综艺</h4>
+      </div>
+      <a href="/zongyi" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+        查看更多 <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
+      <% hotVariety.forEach((variety, index) => { %>
+        <div class="col" style="animation-delay: <%= index * 0.05 %>s">
+          <%- include('../partials/video-card', { video: variety }) %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 热播动漫 -->
+<% if (typeof hotAnime !== 'undefined' && hotAnime.length > 0) { %>
+<section class="section-animate mb-5">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-title-wrapper">
+        <i class="bi bi-palette text-danger section-icon"></i>
+        <h4 class="section-title">热播动漫</h4>
+      </div>
+      <a href="/dongman" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+        查看更多 <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
+      <% hotAnime.forEach((anime, index) => { %>
+        <div class="col" style="animation-delay: <%= index * 0.05 %>s">
+          <%- include('../partials/video-card', { video: anime }) %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>

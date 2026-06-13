@@ -1,0 +1,374 @@
+{
+  "timestamp": "2026-06-12T13:23:41.993Z",
+  "baseUrl": "https://fdzys.net",
+  "siteName": "饭搭子影视",
+  "pages": {
+    "home": {
+      "title": "最新热门电影电视剧动漫综艺体育免费观看_高清在线播放｜饭搭子影视",
+      "metaDescription": "饭搭子影视，免费在线观看最新热门电影、电视剧、动漫、综艺与体育赛事，全网影视大全，每日热门即时更新，娱乐追剧最佳搭子。",
+      "metaKeywords": "电影,电视剧,动漫,综艺,体育直播,免费观看,高清在线播放",
+      "header": {},
+      "navigation": {
+        "mainNav": [],
+        "subNav": []
+      },
+      "searchForm": {
+        "action": "https://fdzys.net/search",
+        "method": "get",
+        "inputs": [
+          {
+            "type": "text",
+            "name": "wd",
+            "placeholder": "搜索电影、电视剧、综艺、动漫",
+            "class": "search-field"
+          },
+          {
+            "type": "submit"
+          }
+        ]
+      },
+      "banner": {},
+      "contentSections": [],
+      "sidebar": {},
+      "footer": {
+        "tag": "FOOTER",
+        "class": "site-footer",
+        "links": [
+          {
+            "text": "关于我们",
+            "href": "https://fdzys.net/about.html"
+          }
+        ],
+        "text": "本站所有内容均来自互联网分享站点所提供的公开引用资源，未提供资源上传、存储服务。            关于我们"
+      },
+      "stats": {},
+      "videoCardSample": {
+        "selector": ".item",
+        "count": 23,
+        "firstCard": {
+          "outerHTML": "<div class=\"item\">\n                                <div class=\"nums\"><span class=\"num\">1</span><span class=\"rankBg\"></span></div>\n                                <a href=\"https://fdzys.net/yu-%E8%AF%B7%E6%B1%82%E6%95%91%E6%8F%B4-xianguan-de-yingpian-shippin-zhibo\" title=\"请求救援\">\n                                    <div class=\"title\">请求救援</div>\n                                </a>\n                            </div>",
+          "class": "item",
+          "children": [
+            {
+              "tag": "div",
+              "class": "nums",
+              "text": "1"
+            },
+            {
+              "tag": "a",
+              "text": "请求救援"
+            }
+          ]
+        }
+      }
+    },
+    "category": [
+      {
+        "name": "电影",
+        "url": "/movie",
+        "title": "最新热门电影免费观看_影片高清在线4K在线影院",
+        "filters": [],
+        "videoList": {
+          "containerClass": "",
+          "itemClass": "",
+          "items": []
+        },
+        "pagination": {},
+        "layout": {
+          "hasSidebar": false,
+          "sidebarClass": "",
+          "contentClass": ""
+        }
+      },
+      {
+        "name": "电视剧",
+        "url": "/tv",
+        "title": "最新热门电视剧免费观看_剧集高清在线热播剧场",
+        "filters": [],
+        "videoList": {
+          "containerClass": "",
+          "itemClass": "",
+          "items": []
+        },
+        "pagination": {},
+        "layout": {
+          "hasSidebar": false,
+          "sidebarClass": "",
+          "contentClass": ""
+        }
+      },
+      {
+        "name": "综艺",
+        "url": "/zongyi",
+        "title": "最新热门综艺免费观看_综艺节目高清在线综艺频道",
+        "filters": [],
+        "videoList": {
+          "containerClass": "",
+          "itemClass": "",
+          "items": []
+        },
+        "pagination": {},
+        "layout": {
+          "hasSidebar": false,
+          "sidebarClass": "",
+          "contentClass": ""
+        }
+      },
+      {
+        "name": "动漫",
+        "url": "/dongman",
+        "title": "最新热门动漫免费观看_番剧高清在线番剧频道",
+        "filters": [],
+        "videoList": {
+          "containerClass": "",
+          "itemClass": "",
+          "items": []
+        },
+        "pagination": {},
+        "layout": {
+          "hasSidebar": false,
+          "sidebarClass": "",
+          "contentClass": ""
+        }
+      },
+      {
+        "name": "动作电影",
+        "url": "/movie/dongzuo",
+        "title": "动作电影_影片免费在线观看",
+        "filters": [],
+        "videoList": {
+          "containerClass": "",
+          "itemClass": "",
+          "items": []
+        },
+        "pagination": {
+          "selector": ".pagination",
+          "class": "pagination",
+          "currentPage": "1",
+          "links": [
+            {
+              "text": "<",
+              "href": "https://fdzys.net/movie/dongzuo",
+              "isActive": false
+            },
+            {
+              "text": "1",
+              "href": "https://fdzys.net/movie/dongzuo",
+              "isActive": true
+            },
+            {
+              "text": "2",
+              "href": "https://fdzys.net/movie/dongzuo?page=2",
+              "isActive": false
+            },
+            {
+              "text": "3",
+              "href": "https://fdzys.net/movie/dongzuo?page=3",
+              "isActive": false
+            },
+            {
+              "text": "4",
+              "href": "https://fdzys.net/movie/dongzuo?page=4",
+              "isActive": false
+            },
+            {
+              "text": "5",
+              "href": "https://fdzys.net/movie/dongzuo?page=5",
+              "isActive": false
+            },
+            {
+              "text": ">",
+              "href": "https://fdzys.net/movie/dongzuo?page=2",
+              "isActive": false
+            }
+          ]
+        },
+        "layout": {
+          "hasSidebar": false,
+          "sidebarClass": "",
+          "contentClass": ""
+        }
+      },
+      {
+        "name": "国产剧",
+        "url": "/tv/guochan",
+        "title": "国产电视剧_剧集免费在线观看",
+        "filters": [],
+        "videoList": {
+          "containerClass": "",
+          "itemClass": "",
+          "items": []
+        },
+        "pagination": {
+          "selector": ".pagination",
+          "class": "pagination",
+          "currentPage": "1",
+          "links": [
+            {
+              "text": "<",
+              "href": "https://fdzys.net/tv/guochan",
+              "isActive": false
+            },
+            {
+              "text": "1",
+              "href": "https://fdzys.net/tv/guochan",
+              "isActive": true
+            },
+            {
+              "text": "2",
+              "href": "https://fdzys.net/tv/guochan?page=2",
+              "isActive": false
+            },
+            {
+              "text": "3",
+              "href": "https://fdzys.net/tv/guochan?page=3",
+              "isActive": false
+            },
+            {
+              "text": "4",
+              "href": "https://fdzys.net/tv/guochan?page=4",
+              "isActive": false
+            },
+            {
+              "text": "5",
+              "href": "https://fdzys.net/tv/guochan?page=5",
+              "isActive": false
+            },
+            {
+              "text": ">",
+              "href": "https://fdzys.net/tv/guochan?page=2",
+              "isActive": false
+            }
+          ]
+        },
+        "layout": {
+          "hasSidebar": false,
+          "sidebarClass": "",
+          "contentClass": ""
+        }
+      }
+    ],
+    "search": [
+      {
+        "keyword": "火遮眼",
+        "url": "https://fdzys.net/search?wd=%E7%81%AB%E9%81%AE%E7%9C%BC",
+        "title": "",
+        "searchForm": {
+          "action": "https://fdzys.net/search",
+          "method": "get",
+          "inputName": "wd",
+          "inputClass": "search-field"
+        },
+        "results": {
+          "containerClass": "",
+          "itemClass": "",
+          "items": []
+        },
+        "pagination": {},
+        "recommendations": []
+      },
+      {
+        "keyword": "电影",
+        "url": "https://fdzys.net/search?wd=%E7%94%B5%E5%BD%B1",
+        "title": "",
+        "searchForm": {
+          "action": "https://fdzys.net/search",
+          "method": "get",
+          "inputName": "wd",
+          "inputClass": "search-field"
+        },
+        "results": {
+          "containerClass": "",
+          "itemClass": "",
+          "items": []
+        },
+        "pagination": {},
+        "recommendations": []
+      },
+      {
+        "keyword": "电视剧",
+        "url": "https://fdzys.net/search?wd=%E7%94%B5%E8%A7%86%E5%89%A7",
+        "title": "",
+        "searchForm": {
+          "action": "https://fdzys.net/search",
+          "method": "get",
+          "inputName": "wd",
+          "inputClass": "search-field"
+        },
+        "results": {
+          "containerClass": "",
+          "itemClass": "",
+          "items": []
+        },
+        "pagination": {},
+        "recommendations": []
+      }
+    ],
+    "detail": [
+      {
+        "url": "https://fdzys.net/tv/nan-bu-dang-an",
+        "title": "南部档案免费在线观看_高清电视剧完整版",
+        "videoInfo": {
+          "title": "南部档案",
+          "cover": "",
+          "year": "2875",
+          "type": "",
+          "region": "",
+          "actors": "宋茜,丁禹兮,付辛博,陈乔恩,梁雪峰,曹骏,周洁琼,周大为,丁嘉文,李欢,黄日莹",
+          "director": "",
+          "description": "民国初年南洋地区发生的一系列诡异事件。故事以张海盐和张海虾两位南部档案馆的秘密探员为主角，他们调查一起神秘案件，发现案件背后隐藏着军阀利用剧毒植物“黄昏草”散播的阴谋。在调查过程中，张海盐和张海虾经历了生死考验，张海虾甚至因此瘫痪。随着线索逐渐清晰，张海盐发现所有的线索都指向一艘大船——南安号……\n该剧改编自南派三叔同名小说。"
+        },
+        "playSources": [],
+        "episodes": [],
+        "related": [],
+        "layout": {
+          "mainClass": "",
+          "sidebarClass": ""
+        }
+      },
+      {
+        "url": "https://fdzys.net/movie/huo-zhe-yan-2025",
+        "title": "火遮眼2025 TC_免费在线观看_国语_高清播放",
+        "videoInfo": {
+          "title": "火遮眼2025 TC国语",
+          "cover": "",
+          "year": "2020",
+          "type": "",
+          "region": "",
+          "actors": "甄子丹,毛舜筠,周励淇,王晶",
+          "director": "",
+          "description": "东南亚某处，失语维修工王伟（谢苗 饰）因女儿雨晴（杨恩又 饰）失踪觉醒猎杀本能。他联手寻妻记者纳文（林科灯 饰）组成生死同盟，在连番血战中死斗黑暗组织打手大块头（黎唯 饰）与嗜血杀手阿德（雅彦·鲁伊安 饰）一众人等。怒火遮眼，鲜血开路，从血肉翻飞的街头混战，到拳拳断骨的室内死斗，一场又一场血腥残暴的生死拼杀连番上演，与此同时雨晴也在魔窟中用父亲教的功夫自救。随着二人深入敌营，真相直指背后更庞大的黑恶势力。"
+        },
+        "playSources": [],
+        "episodes": [],
+        "related": [],
+        "layout": {
+          "mainClass": "",
+          "sidebarClass": ""
+        }
+      },
+      {
+        "url": "https://fdzys.net/tv/moli",
+        "title": "莫离免费在线观看_高清电视剧完整版",
+        "videoInfo": {
+          "title": "莫离",
+          "cover": "",
+          "year": "2016",
+          "type": "",
+          "region": "",
+          "actors": "杨洋,毛晓彤,白宇,郑业成,牛骏峰,崔航,秦语,宋奕星,张赫,马心瑞,关芯,陆妍淇,张彬彬,张超人,周宸佳,刘钰瑾,章涛,胡浩博,小小白,蔡纲,顾凯俐,傅隽,杨曼琴,杨雪莹,宋雨晴,刘倩妤,黄柏钧,程弘,冷海铭,刘顾浩,杨雨橙,边城,陈洁,刘杭丽,李欣泽,张皓宇",
+          "director": "",
+          "description": "讲述了叶璃（白鹿 饰）因离山封山被困八年，借太后指婚，嫁给定王墨修尧（丞磊 饰）得以下山。面对王府衰败与丈夫的颓态，她以智慧整顿内务、查明旧案，并坚持为患有腿疾的墨修尧治疗。二人从相互试探到生死相托，联手对抗太后郭妗、穆阳侯等人的阴谋。同时，叶璃暗中调查揭开离山书院被围的真相，墨修尧也洗刷了家族冤屈。最后，二人携手立于春日阳光下，走向属于他们的未来。"
+        },
+        "playSources": [],
+        "episodes": [],
+        "related": [],
+        "layout": {
+          "mainClass": "",
+          "sidebarClass": ""
+        }
+      }
+    ],
+    "player": []
+  }
+}

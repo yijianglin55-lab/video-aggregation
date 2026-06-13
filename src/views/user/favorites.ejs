@@ -1,0 +1,91 @@
+<!-- 我的收藏页面模板 -->
+
+<div class="user-page">
+  <div class="container py-4">
+    <!-- 返回按钮 -->
+    <a href="/user" class="back-link fade-in-up">
+      <i class="bi bi-arrow-left me-2"></i>返回用户中心
+    </a>
+
+    <!-- 页面标题 -->
+    <div class="d-flex align-items-center mb-4 fade-in-up" style="animation-delay: 0.1s">
+      <i class="bi bi-heart text-danger fs-3 me-3"></i>
+      <h3 class="mb-0">我的收藏</h3>
+    </div>
+
+    <!-- 收藏列表 -->
+    <% if (typeof favorites !== 'undefined' && favorites.length > 0) { %>
+      <div class="favorites-list">
+        <% favorites.forEach((fav, index) => { %>
+          <div class="favorite-item fade-in-up" style="animation-delay: <%= 0.1 + index * 0.05 %>s">
+            <div class="favorite-info">
+              <a href="/detail/<%= fav.video_type %>/<%= fav.video_id %>" class="favorite-title">
+                <%= fav.video_name %>
+              </a>
+              <span class="badge bg-secondary"><%= fav.video_type === 'movie' ? '电影' : fav.video_type === 'tv' ? '电视剧' : fav.video_type %></span>
+            </div>
+            <div class="favorite-meta">
+              <span class="text-secondary"><%= new Date(fav.created_at).toLocaleDateString('zh-CN') %></span>
+              <button class="btn btn-sm btn-outline-danger remove-favorite-btn"
+                      data-type="<%= fav.video_type %>"
+                      data-id="<%= fav.video_id %>">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+
+      <!-- 分页 -->
+      <% if (typeof pagination !== 'undefined' && pagination.total > 1) { %>
+        <nav class="mt-4 fade-in-up">
+          <ul class="pagination justify-content-center">
+            <li class="page-item <%= !pagination.hasPrev ? 'disabled' : '' %>">
+              <a class="page-link rounded-pill" href="/user/favorites?page=<%= pagination.current - 1 %>">上一页</a>
+            </li>
+            <% for (let i = 1; i <= pagination.total; i++) { %>
+              <li class="page-item <%= i === pagination.current ? 'active' : '' %>">
+                <a class="page-link rounded-pill" href="/user/favorites?page=<%= i %>"><%= i %></a>
+              </li>
+            <% } %>
+            <li class="page-item <%= !pagination.hasNext ? 'disabled' : '' %>">
+              <a class="page-link rounded-pill" href="/user/favorites?page=<%= pagination.current + 1 %>">下一页</a>
+            </li>
+          </ul>
+        </nav>
+      <% } %>
+    <% } else { %>
+      <div class="empty-state fade-in-up">
+        <div class="empty-icon">
+          <i class="bi bi-heart"></i>
+        </div>
+        <h4>暂无收藏</h4>
+        <p class="text-secondary">去收藏喜欢的影片吧</p>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.remove-favorite-btn').forEach(btn => {
+  btn.addEventListener('click', async function() {
+    if (!confirm('确定要取消收藏吗？')) return;
+    const type = this.dataset.type;
+    const id = this.dataset.id;
+    try {
+      const response = await fetch('/api/favorite', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type, id })
+      });
+      const result = await response.json();
+      if (result.success) {
+        this.closest('.favorite-item').style.animation = 'fadeOut 0.3s ease forwards';
+        setTimeout(() => this.closest('.favorite-item').remove(), 300);
+      }
+    } catch (error) {
+      alert('操作失败');
+    }
+  });
+});
+</script>

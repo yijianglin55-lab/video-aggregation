@@ -1,0 +1,55 @@
+{
+  "name": "video-aggregation-site",
+  "version": "1.0.0",
+  "description": "影视聚合网站 - 基于Node.js + Express + EJS + MySQL + Axios + Cheerio + Bootstrap5",
+  "main": "src/app.js",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js",
+    "init-db": "node init-db.js",
+    "crawl": "node src/crawlers/temp-crawler.js",
+    "pm2:start": "pm2 start ecosystem.config.js --env production",
+    "pm2:stop": "pm2 stop video-aggregation",
+    "pm2:restart": "pm2 restart video-aggregation",
+    "pm2:logs": "pm2 logs video-aggregation"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.6.0",
+    "axios": "^1.5.0",
+    "cheerio": "^1.0.0-rc.12",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0",
+    "express-rate-limit": "^6.10.0",
+    "express-validator": "^7.0.1",
+    "connect-flash": "^0.1.1",
+    "method-override": "^3.0.0",
+    "cookie-parser": "^1.4.6",
+    "express-ejs-layouts": "^2.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "pm2": "^5.3.0"
+  },
+  "keywords": [
+    "video",
+    "aggregation",
+    "nodejs",
+    "express",
+    "ejs",
+    "mysql",
+    "axios",
+    "cheerio",
+    "bootstrap5"
+  ],
+  "author": "Video Aggregation Project",
+  "license": "MIT"
+}

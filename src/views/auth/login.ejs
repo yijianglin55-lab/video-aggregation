@@ -1,0 +1,61 @@
+<!-- 登录页面模板 -->
+
+<div class="auth-page">
+  <div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 80vh;">
+      <div class="col-md-5 col-lg-4">
+        <div class="auth-card">
+          <!-- Logo -->
+          <div class="auth-logo-new">
+            <div class="logo-circle">
+              <div class="logo-inner">
+                <div class="logo-bar"></div>
+                <div class="logo-bar"></div>
+                <div class="logo-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="auth-title">欢迎回来</h2>
+          <p class="auth-subtitle">登录您的账号继续观看</p>
+
+          <!-- 错误提示 -->
+          <% if (typeof error !== 'undefined' && error && error.length > 0) { %>
+            <div class="auth-error">
+              <i class="bi bi-exclamation-circle me-2"></i><%= error %>
+            </div>
+          <% } %>
+
+          <!-- 表单 -->
+          <form action="/auth/login" method="POST" class="auth-form">
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-person"></i>
+                </span>
+                <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名" required>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-lock"></i>
+                </span>
+                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-3">
+              <i class="bi bi-box-arrow-in-right me-2"></i>登录
+            </button>
+          </form>
+
+          <div class="auth-footer">
+            <p>还没有账号？<a href="/auth/register">立即注册</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

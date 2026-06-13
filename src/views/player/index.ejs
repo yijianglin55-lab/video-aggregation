@@ -1,0 +1,132 @@
+<!-- 播放页模板 -->
+
+<% if (typeof video !== 'undefined' && video) { %>
+<%
+  // 官方源列表
+  const officialSources = ['qiyi', 'bilibili', '优酷云', 'mgtv', '企鹅云'];
+  const isOfficialSource = video.currentSource && officialSources.some(s =>
+    video.currentSource.name.toLowerCase().includes(s.toLowerCase())
+  );
+%>
+<div class="player-page">
+  <div class="container">
+    <!-- 播放器 -->
+    <div class="player-wrapper rounded-4 overflow-hidden shadow-lg">
+      <% if (isOfficialSource) { %>
+        <!-- 官方源提示 -->
+        <div class="official-source-warning">
+          <div class="warning-content">
+            <i class="bi bi-exclamation-triangle display-1 text-warning mb-3"></i>
+            <h3 class="fw-bold mb-3">该播放源为官方源</h3>
+            <p class="text-secondary mb-2">
+              <strong class="text-warning"><%= video.currentSource.name %></strong> 是官方视频平台，无法直接播放。
+            </p>
+            <p class="text-secondary mb-4">
+              请选择其他播放源观看（如天堂云、无印云等）。
+            </p>
+            <div class="official-tip">
+              <i class="bi bi-info-circle me-2"></i>
+              <span>金色高亮的播放源为官方源，请选择普通播放源观看</span>
+            </div>
+          </div>
+        </div>
+      <% } else if (video.playerUrl) { %>
+        <% if (video.playerType === 'iframe') { %>
+          <iframe src="<%= video.playerUrl %>" frameborder="0" allowfullscreen="true" width="100%" height="100%"></iframe>
+        <% } else { %>
+          <video id="video-player" controls autoplay width="100%" height="100%">
+            <source src="<%= video.playerUrl %>" type="video/mp4">
+            您的浏览器不支持视频播放
+          </video>
+        <% } %>
+      <% } else { %>
+        <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+          <div class="text-center text-white">
+            <i class="bi bi-exclamation-circle display-1"></i>
+            <p class="mt-3">播放源加载失败</p>
+            <a href="/detail/<%= video.type %>/<%= video.id %>" class="btn btn-outline-light rounded-pill">
+              返回详情页
+            </a>
+          </div>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- 视频信息 -->
+    <div class="row mt-4">
+      <div class="col-lg-8">
+        <h4 class="fw-bold mb-3"><%= video.title %></h4>
+
+        <!-- 播放源切换 -->
+        <% if (video.sources && video.sources.length > 0) { %>
+          <div class="mb-4">
+            <h6 class="text-secondary mb-2">
+              <i class="bi bi-broadcast me-2"></i>播放源
+              <small class="text-warning ms-2"><i class="bi bi-info-circle me-1"></i>金色为官方源</small>
+            </h6>
+            <div class="source-tabs">
+              <% video.sources.forEach((source, index) => { %>
+                <%
+                  const isOfficial = officialSources.some(s =>
+                    source.name.toLowerCase().includes(s.toLowerCase())
+                  );
+                %>
+                <a href="/play/<%= video.type %>/<%= video.id %>?sid=<%= source.sid %>"
+                   class="source-tab <%= source.isActive ? 'active' : '' %> <%= isOfficial ? 'official' : '' %>">
+                  <%= source.name %>
+                </a>
+              <% }) %>
+            </div>
+          </div>
+        <% } %>
+
+        <!-- 剧集列表 -->
+        <div class="mb-4">
+          <h6 class="text-secondary mb-2">
+            <i class="bi bi-collection-play me-2"></i>选集
+            <% if (typeof currentEpisode !== 'undefined' && currentEpisode) { %>
+              <span class="badge bg-primary ms-2">当前: <%= currentEpisode %></span>
+            <% } %>
+          </h6>
+          <div class="episodes-grid">
+            <% if (video.episodes && video.episodes.length > 0) { %>
+              <% video.episodes.forEach(ep => { %>
+                <%
+                  const isCurrent = (typeof currentEpisode !== 'undefined' && currentEpisode && ep.name.includes(currentEpisode));
+                %>
+                <a href="/play/<%= video.type %>/<%= video.id %>/<%= ep.name %>?sid=<%= video.currentSource ? video.currentSource.sid : '' %>"
+                   class="episode-btn <%= isCurrent ? 'active' : '' %>">
+                  <%= ep.name %>
+                  <% if (isCurrent) { %>
+                    <i class="bi bi-play-fill ms-1"></i>
+                  <% } %>
+                </a>
+              <% }) %>
+            <% } else { %>
+              <p class="text-secondary">暂无剧集</p>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- 返回详情页 -->
+        <div class="mt-4 mb-4">
+          <a href="/detail/<%= video.type %>/<%= video.id %>" class="btn btn-outline-secondary rounded-pill px-4">
+            <i class="bi bi-arrow-left me-2"></i>返回详情页
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% } else { %>
+  <div class="container py-5">
+    <div class="text-center">
+      <i class="bi bi-exclamation-circle display-1 text-muted"></i>
+      <h3 class="mt-3">播放源加载失败</h3>
+      <p class="text-muted">请稍后重试或返回首页</p>
+      <a href="/" class="btn btn-primary rounded-pill px-4">
+        <i class="bi bi-house-door me-2"></i>返回首页
+      </a>
+    </div>
+  </div>
+<% } %>

@@ -1,0 +1,32 @@
+<!-- 500页面模板 -->
+
+<div class="container py-5">
+  <div class="text-center">
+    <div class="display-1 fw-bold text-danger mb-3" style="font-size: 6rem;">500</div>
+    <div class="bg-secondary bg-opacity-25 rounded-4 p-4 d-inline-block mb-4">
+      <i class="bi bi-exclamation-circle display-4 text-danger"></i>
+    </div>
+    <h2 class="fw-bold mb-3">服务器错误</h2>
+    <p class="text-secondary mb-4">抱歉，服务器出现了问题，请稍后重试。</p>
+
+    <% if (typeof error !== 'undefined' && error.stack) { %>
+      <div class="card bg-secondary bg-opacity-25 border-0 rounded-4 mb-4 text-start">
+        <div class="card-header bg-transparent border-0">
+          <h5 class="mb-0 fw-bold">错误详情</h5>
+        </div>
+        <div class="card-body">
+          <pre class="mb-0 text-secondary" style="white-space: pre-wrap; word-wrap: break-word;"><%= error.stack %></pre>
+        </div>
+      </div>
+    <% } %>
+
+    <div class="d-flex justify-content-center gap-3">
+      <a href="/" class="btn btn-primary rounded-pill px-4">
+        <i class="bi bi-house-door me-2"></i>返回首页
+      </a>
+      <a href="javascript:location.reload()" class="btn btn-outline-secondary rounded-pill px-4">
+        <i class="bi bi-arrow-clockwise me-2"></i>刷新页面
+      </a>
+    </div>
+  </div>
+</div>

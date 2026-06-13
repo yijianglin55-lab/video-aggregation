@@ -1,0 +1,9 @@
+node_modules
+.git
+.env
+.env.local
+*.log
+docs/
+test-*.js
+ecosystem.config.js
+pm2-*.json

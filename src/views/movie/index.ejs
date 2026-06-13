@@ -1,0 +1,95 @@
+<!-- 电影列表页模板 -->
+
+<div class="container py-4">
+  <!-- 面包屑导航 -->
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/" class="text-secondary">首页</a></li>
+      <li class="breadcrumb-item active">电影</li>
+    </ol>
+  </nav>
+
+  <!-- 页面标题 -->
+  <div class="d-flex align-items-center mb-4">
+    <i class="bi bi-camera-reels text-primary fs-3 me-3"></i>
+    <h3 class="mb-0 fw-bold"><%= title %></h3>
+  </div>
+
+  <!-- 分类筛选 -->
+  <div class="filter-section mb-4">
+    <div class="filter-card">
+      <div class="filter-label">
+        <i class="bi bi-funnel me-2"></i>分类筛选
+      </div>
+      <div class="filter-tags">
+        <% if (typeof types !== 'undefined' && types.length > 0) { %>
+          <% types.forEach(type => { %>
+            <a href="/movie/<%= type.value %>?sort=<%= currentSort %>"
+               class="filter-tag <%= currentType === type.value ? 'active' : '' %>">
+              <%= type.name %>
+            </a>
+          <% }) %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <!-- 排序筛选 -->
+  <div class="filter-section mb-4">
+    <div class="filter-card">
+      <div class="filter-label">
+        <i class="bi bi-sort-down me-2"></i>排序方式
+      </div>
+      <div class="filter-tags">
+        <% if (typeof sorts !== 'undefined' && sorts.length > 0) { %>
+          <% sorts.forEach(sort => { %>
+            <a href="/movie/<%= currentType %>?sort=<%= sort.value %>"
+               class="filter-tag <%= currentSort === sort.value ? 'active' : '' %>">
+              <%= sort.name %>
+            </a>
+          <% }) %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+
+  <!-- 电影列表 -->
+  <% if (typeof movies !== 'undefined' && movies.length > 0) { %>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
+      <% movies.forEach((movie, index) => { %>
+        <div class="col" style="animation-delay: <%= index * 0.05 %>s">
+          <%- include('../partials/video-card', { video: movie }) %>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- 分页 -->
+    <% if (typeof pagination !== 'undefined' && pagination.total > 1) { %>
+      <nav class="mt-5" aria-label="分页导航">
+        <ul class="pagination justify-content-center">
+          <li class="page-item <%= !pagination.hasPrev ? 'disabled' : '' %>">
+            <a class="page-link rounded-pill" href="/movie/<%= currentType %>?sort=<%= currentSort %>&page=<%= pagination.current - 1 %>">
+              <i class="bi bi-chevron-left me-1"></i>上一页
+            </a>
+          </li>
+          <% pagination.pages.forEach(page => { %>
+            <li class="page-item <%= page.page === pagination.current ? 'active' : '' %>">
+              <a class="page-link rounded-pill" href="/movie/<%= currentType %>?sort=<%= currentSort %>&page=<%= page.page %>"><%= page.page %></a>
+            </li>
+          <% }) %>
+          <li class="page-item <%= !pagination.hasNext ? 'disabled' : '' %>">
+            <a class="page-link rounded-pill" href="/movie/<%= currentType %>?sort=<%= currentSort %>&page=<%= pagination.current + 1 %>">
+              下一页<i class="bi bi-chevron-right ms-1"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    <% } %>
+  <% } else { %>
+    <div class="empty-state">
+      <i class="bi bi-inbox display-1"></i>
+      <h4 class="mt-3">暂无数据</h4>
+      <p class="text-secondary">没有找到相关影片</p>
+    </div>
+  <% } %>
+</div>

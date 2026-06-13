@@ -1,0 +1,80 @@
+<!-- 用户中心首页模板 -->
+
+<div class="user-page">
+  <div class="container py-4">
+    <!-- 用户信息卡片 -->
+    <div class="user-profile-card fade-in-up">
+      <div class="user-avatar">
+        <i class="bi bi-person-fill"></i>
+      </div>
+      <div class="user-info">
+        <h3 class="mb-1"><%= user.username %></h3>
+        <p class="text-secondary mb-0"><%= user.email %></p>
+      </div>
+    </div>
+
+    <!-- 统计卡片 -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <a href="/user/favorites" class="text-decoration-none">
+          <div class="stat-card fade-in-up" style="animation-delay: 0.1s">
+            <div class="stat-icon bg-danger">
+              <i class="bi bi-heart-fill"></i>
+            </div>
+            <div class="stat-info">
+              <h4><%= typeof favoriteCount !== 'undefined' ? favoriteCount : 0 %></h4>
+              <p>我的收藏</p>
+            </div>
+            <i class="bi bi-chevron-right stat-arrow"></i>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="/user/history" class="text-decoration-none">
+          <div class="stat-card fade-in-up" style="animation-delay: 0.2s">
+            <div class="stat-icon bg-success">
+              <i class="bi bi-clock-history"></i>
+            </div>
+            <div class="stat-info">
+              <h4><%= typeof historyCount !== 'undefined' ? historyCount : 0 %></h4>
+              <p>播放历史</p>
+            </div>
+            <i class="bi bi-chevron-right stat-arrow"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 功能菜单 -->
+    <div class="user-menu-card fade-in-up" style="animation-delay: 0.3s">
+      <a href="/user/profile" class="user-menu-item">
+        <div class="menu-icon bg-primary">
+          <i class="bi bi-person-gear"></i>
+        </div>
+        <span>个人资料</span>
+        <i class="bi bi-chevron-right ms-auto"></i>
+      </a>
+      <a href="/user/favorites" class="user-menu-item">
+        <div class="menu-icon bg-danger">
+          <i class="bi bi-heart"></i>
+        </div>
+        <span>我的收藏</span>
+        <i class="bi bi-chevron-right ms-auto"></i>
+      </a>
+      <a href="/user/history" class="user-menu-item">
+        <div class="menu-icon bg-success">
+          <i class="bi bi-clock-history"></i>
+        </div>
+        <span>播放历史</span>
+        <i class="bi bi-chevron-right ms-auto"></i>
+      </a>
+      <a href="/auth/logout" class="user-menu-item text-danger">
+        <div class="menu-icon bg-danger">
+          <i class="bi bi-box-arrow-right"></i>
+        </div>
+        <span>退出登录</span>
+        <i class="bi bi-chevron-right ms-auto"></i>
+      </a>
+    </div>
+  </div>
+</div>

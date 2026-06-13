@@ -1,0 +1,25 @@
+<!-- 视频卡片组件 -->
+<div class="video-card">
+  <a href="/detail/<%= video.type %>/<%= video.id %>" class="text-decoration-none">
+    <div class="card-img-top-wrapper">
+      <img src="<%= video.img || '/img/default-cover.jpg' %>" alt="<%= video.title %>" loading="lazy">
+      <% if (video.tag) { %>
+        <span class="badge bg-danger badge-tag"><%= video.tag %></span>
+      <% } %>
+      <% if (video.score && video.score !== '0.0') { %>
+        <span class="badge bg-warning text-dark badge-score">
+          <i class="bi bi-star-fill"></i> <%= video.score %>
+        </span>
+      <% } %>
+      <div class="play-overlay">
+        <i class="bi bi-play-fill"></i>
+      </div>
+    </div>
+    <div class="card-body">
+      <h6 class="card-title"><%= video.title %></h6>
+      <% if (video.actors) { %>
+        <p class="card-text"><%= video.actors %></p>
+      <% } %>
+    </div>
+  </a>
+</div>

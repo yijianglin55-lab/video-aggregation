@@ -1,0 +1,111 @@
+<!-- 播放历史页面模板 -->
+
+<div class="user-page">
+  <div class="container py-4">
+    <!-- 返回按钮 -->
+    <a href="/user" class="back-link fade-in-up">
+      <i class="bi bi-arrow-left me-2"></i>返回用户中心
+    </a>
+
+    <!-- 页面标题 -->
+    <div class="d-flex align-items-center justify-content-between mb-4 fade-in-up" style="animation-delay: 0.1s">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-clock-history text-success fs-3 me-3"></i>
+        <h3 class="mb-0">播放历史</h3>
+      </div>
+      <% if (typeof history !== 'undefined' && history.length > 0) { %>
+        <button class="btn btn-outline-danger btn-sm rounded-pill" id="clearHistoryBtn">
+          <i class="bi bi-trash me-1"></i>清空
+        </button>
+      <% } %>
+    </div>
+
+    <!-- 历史列表 -->
+    <% if (typeof history !== 'undefined' && history.length > 0) { %>
+      <div class="history-list">
+        <% history.forEach((item, index) => { %>
+          <div class="history-item fade-in-up" style="animation-delay: <%= 0.1 + index * 0.05 %>s">
+            <a href="/play/<%= item.video_type %>/<%= item.video_id %>/<%= item.episode || '' %>" class="history-link">
+              <div class="history-info">
+                <h6 class="history-title"><%= item.video_name %></h6>
+                <% if (item.episode) { %>
+                  <span class="badge bg-primary"><%= item.episode %></span>
+                <% } %>
+              </div>
+              <div class="history-meta">
+                <span class="text-secondary"><%= new Date(item.updated_at).toLocaleDateString('zh-CN') %></span>
+                <i class="bi bi-play-circle"></i>
+              </div>
+            </a>
+            <button class="btn btn-sm btn-outline-danger remove-history-btn"
+                    data-type="<%= item.video_type %>"
+                    data-id="<%= item.video_id %>">
+              <i class="bi bi-x"></i>
+            </button>
+          </div>
+        <% }) %>
+      </div>
+
+      <!-- 分页 -->
+      <% if (typeof pagination !== 'undefined' && pagination.total > 1) { %>
+        <nav class="mt-4 fade-in-up">
+          <ul class="pagination justify-content-center">
+            <li class="page-item <%= !pagination.hasPrev ? 'disabled' : '' %>">
+              <a class="page-link rounded-pill" href="/user/history?page=<%= pagination.current - 1 %>">上一页</a>
+            </li>
+            <% for (let i = 1; i <= pagination.total; i++) { %>
+              <li class="page-item <%= i === pagination.current ? 'active' : '' %>">
+                <a class="page-link rounded-pill" href="/user/history?page=<%= i %>"><%= i %></a>
+              </li>
+            <% } %>
+            <li class="page-item <%= !pagination.hasNext ? 'disabled' : '' %>">
+              <a class="page-link rounded-pill" href="/user/history?page=<%= pagination.current + 1 %>">下一页</a>
+            </li>
+          </ul>
+        </nav>
+      <% } %>
+    <% } else { %>
+      <div class="empty-state fade-in-up">
+        <div class="empty-icon">
+          <i class="bi bi-clock-history"></i>
+        </div>
+        <h4>暂无播放历史</h4>
+        <p class="text-secondary">去看一部影片吧</p>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.remove-history-btn').forEach(btn => {
+  btn.addEventListener('click', async function() {
+    const type = this.dataset.type;
+    const id = this.dataset.id;
+    try {
+      const response = await fetch('/api/history', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type, id })
+      });
+      const result = await response.json();
+      if (result.success) {
+        this.closest('.history-item').style.animation = 'fadeOut 0.3s ease forwards';
+        setTimeout(() => this.closest('.history-item').remove(), 300);
+      }
+    } catch (error) {
+      alert('操作失败');
+    }
+  });
+});
+
+document.getElementById('clearHistoryBtn')?.addEventListener('click', async function() {
+  if (!confirm('确定要清空所有播放历史吗？')) return;
+  try {
+    const response = await fetch('/api/history/clear', { method: 'POST' });
+    const result = await response.json();
+    if (result.success) location.reload();
+  } catch (error) {
+    alert('操作失败');
+  }
+});
+</script>
