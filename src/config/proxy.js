@@ -63,6 +63,21 @@ function initProxyPool() {
     }
   }
 
+  // 从单独的 PROXY_HOST / PROXY_PORT 环境变量读取
+  const proxyHost = process.env.PROXY_HOST;
+  const proxyPort = process.env.PROXY_PORT;
+  if (proxyHost && proxyPort) {
+    const proxy = {
+      host: proxyHost,
+      port: parseInt(proxyPort),
+      username: process.env.PROXY_USERNAME || undefined,
+      password: process.env.PROXY_PASSWORD || undefined
+    };
+    setProxyPool([proxy]);
+    console.log(`[代理] 已加载代理: ${proxyHost}:${proxyPort}`);
+    return;
+  }
+
   // 使用静态代理列表
   if (STATIC_PROXIES.length > 0) {
     setProxyPool(STATIC_PROXIES);

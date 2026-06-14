@@ -118,10 +118,10 @@ async function initDatabase() {
     // 插入默认配置
     console.log('[2/4] 插入默认配置...');
     const defaultConfigs = [
-      ['site_name', '鲁王影视', '网站名称'],
+      ['site_name', 'X影视', '网站名称'],
       ['site_logo', '/images/logo.png', '网站Logo'],
-      ['announcement', '欢迎访问鲁王影视！', '首页公告'],
-      ['seo_title', '鲁王影视 - 高清影视资源在线观看', 'SEO标题'],
+      ['announcement', '欢迎访问X影视！', '首页公告'],
+      ['seo_title', 'X影视 - 高清影视资源在线观看', 'SEO标题'],
       ['seo_description', '高清影视资源聚合平台，免费在线观看最新电影、电视剧、综艺、动漫', 'SEO描述'],
       ['seo_keywords', '电影,电视剧,综艺,动漫,高清,在线观看', 'SEO关键词']
     ];

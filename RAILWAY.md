@@ -52,7 +52,7 @@ NODE_ENV=production
 SESSION_SECRET=your-random-secret-key-here
 
 # 网站配置
-SITE_NAME=鲁王影视
+SITE_NAME=X影视
 SITE_DESCRIPTION=高清影视资源聚合平台
 ```
 

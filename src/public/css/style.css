@@ -60,26 +60,21 @@ a:hover {
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0.5rem;
   text-decoration: none;
   padding: 0.25rem 0;
 }
 
-.logo-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--primary-color);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-text {
-  font-size: 1rem;
-  font-weight: 700;
-  color: white;
+.logo-x {
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #818cf8, #c084fc, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1;
+  letter-spacing: -0.02em;
+  font-style: italic;
 }
 
 .site-name {
@@ -1351,17 +1346,21 @@ footer a:hover {
 }
 
 .auth-logo {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, var(--primary-color), #818cf8);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.5rem;
-  font-size: 2rem;
-  color: white;
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.auth-logo-x {
+  font-size: 3.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #818cf8, #c084fc, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+  letter-spacing: -0.02em;
 }
 
 .auth-header h2 {
